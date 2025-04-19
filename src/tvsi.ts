@@ -31,3 +31,14 @@ const dev: DevInfo = {
 };
 
 console.log(dev);
+
+type Person = {
+  name: string;
+  age: number;
+  isAdmin: boolean;
+};
+
+type addSum = (a: number, b: number) => number;
+const printSum: addSum = (a, b) => a + b;
+
+console.log(printSum(2, 3)); // 5
