@@ -31,3 +31,32 @@ function processData(input: unknown) {
 processData("Hello");
 processData(123);
 processData([1, 2, 3]);
+
+// Problem solving No ------------------> 2
+
+type UserInfo = {
+  id: number;
+  name: string;
+};
+
+function processUser(input: unknown): input is UserInfo {
+  return (
+    typeof input === "object" &&
+    input !== null &&
+    "id" in input &&
+    typeof (input as any).id === "number" &&
+    "name" in input &&
+    typeof (input as any).name === "string"
+  );
+}
+
+function printUserInfo(input: unknown) {
+  if (processUser(input)) {
+    console.log(`ID: ${input.id}, Name: ${input.name}`);
+  } else {
+    console.log("Invalid user info");
+  }
+}
+
+printUserInfo({ id: 1, name: "John" });
+printUserInfo({ id: "1", name: "John" });
