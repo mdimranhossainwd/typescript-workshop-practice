@@ -60,3 +60,32 @@ function printUserInfo(input: unknown) {
 
 printUserInfo({ id: 1, name: "John" });
 printUserInfo({ id: "1", name: "John" });
+
+// Problem solving No ------------------> 3
+type APIResponse = {
+  status: string | boolean;
+  data: unknown;
+};
+
+function processReponse(response: APIResponse) {
+  if (typeof response.data === "string") {
+    console.log(`String data: ${response.data}`);
+  } else if (typeof response.data === "object" && response.data !== null) {
+    console.log(`Object data: ${JSON.stringify(response.data)}`);
+  } else {
+    console.log(`Unknown data type: ${typeof response.data}`);
+  }
+}
+
+processReponse({
+  status: true,
+  data: "Hello world",
+});
+processReponse({
+  status: true,
+  data: { id: 1, name: "John" },
+});
+processReponse({
+  status: "success",
+  data: [{ id: 1, name: "John" }],
+});
